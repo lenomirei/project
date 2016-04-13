@@ -1,0 +1,37 @@
+﻿生成启动时间为 2015/11/8 18:52:41。
+     1>项目“C:\Users\leno\Desktop\C语言临时运行处\CDateTime\CDateTime.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“.\Debug\CDateTime.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         E:\VS\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         Main.cpp
+     1>c:\users\leno\desktop\c语言临时运行处\cdatetime\main.cpp(22): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\vs\vc\include\stdio.h(304) : 参见“scanf”的声明
+     1>c:\users\leno\desktop\c语言临时运行处\cdatetime\main.cpp(29): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\vs\vc\include\stdio.h(304) : 参见“scanf”的声明
+     1>c:\users\leno\desktop\c语言临时运行处\cdatetime\main.cpp(54): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\vs\vc\include\stdio.h(304) : 参见“scanf”的声明
+     1>c:\users\leno\desktop\c语言临时运行处\cdatetime\main.cpp(66): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\vs\vc\include\stdio.h(304) : 参见“scanf”的声明
+     1>c:\users\leno\desktop\c语言临时运行处\cdatetime\main.cpp(77): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\vs\vc\include\stdio.h(304) : 参见“scanf”的声明
+       ManifestResourceCompile:
+         所有输出均为最新。
+       Link:
+         E:\VS\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\CDateTime.exe" /INCREMENTAL /NOLOGO odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:".\Debug\CDateTime.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\leno\Desktop\C语言临时运行处\CDateTime\Debug\CDateTime.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\CDateTime.lib" /MACHINE:X86 .\Debug\CDateTime.exe.embed.manifest.res
+         .\Debug\CDateTime.obj
+         .\Debug\Main.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:".\Debug\CDateTime.exe.embed.manifest" /manifest .\Debug\CDateTime.exe.intermediate.manifest
+         所有输出均为最新。
+       LinkEmbedManifest:
+         所有输出均为最新。
+         CDateTime.vcxproj -> C:\Users\leno\Desktop\C语言临时运行处\CDateTime\.\Debug\CDateTime.exe
+       FinalizeBuildStatus:
+         正在删除文件“.\Debug\CDateTime.unsuccessfulbuild”。
+         正在对“.\Debug\CDateTime.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“C:\Users\leno\Desktop\C语言临时运行处\CDateTime\CDateTime.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.75

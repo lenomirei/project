@@ -1,0 +1,22 @@
+﻿生成启动时间为 2016/4/7 17:30:11。
+     1>项目“G:\我的坚果云\比特C语言上课程序\BigData\BigData\BigData.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\工具\VS2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt BigDataFun.cpp
+         BigDataFun.cpp
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(52): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(110): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(143): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(190): warning C4018: “<=”: 有符号/无符号不匹配
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(190): warning C4018: “>=”: 有符号/无符号不匹配
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(218): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(134): warning C4715: “BigData::operator+”: 不是所有的控件路径都返回值
+     1>g:\我的坚果云\比特c语言上课程序\bigdata\bigdata\bigdatafun.cpp(203): warning C4715: “BigData::operator*”: 不是所有的控件路径都返回值
+       Link:
+         E:\工具\VS2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\我的坚果云\比特C语言上课程序\BigData\Debug\BigData.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"G:\我的坚果云\比特C语言上课程序\BigData\Debug\BigData.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\我的坚果云\比特C语言上课程序\BigData\Debug\BigData.lib" /MACHINE:X86 Debug\BigDataFun.obj
+         Debug\Source.obj
+         BigData.vcxproj -> G:\我的坚果云\比特C语言上课程序\BigData\Debug\BigData.exe
+     1>已完成生成项目“G:\我的坚果云\比特C语言上课程序\BigData\BigData\BigData.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:16.14
