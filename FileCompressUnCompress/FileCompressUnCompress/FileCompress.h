@@ -5,8 +5,8 @@
 #include"Huffman.h"
 using namespace std;
 
-
-typedef long LongType;
+//如何输入一个文件夹的名称遍历这下面所有的文件
+typedef long long LongType;
 struct CharInfo
 {
 	unsigned char _ch;
@@ -54,14 +54,15 @@ public:
 		assert(filename);
 		FILE *fIn;
 		string path = filename;
-		path += ".txt";
-		fIn = fopen(path.c_str(), "r");
+		path += ".jpg";
+		fIn = fopen(path.c_str(), "rb");
 		assert(fIn);
-		char ch = fgetc(fIn);
-		while (ch != EOF)
+		char *ch = new char;
+		fread(ch, 1, 1, fIn);
+		while (!feof(fIn))
 		{
-			_infos[(unsigned char)ch]._count++;
-			ch = fgetc(fIn);
+			_infos[(unsigned char)(*ch)]._count++;
+			fread(ch, 1, 1, fIn);
 		}
 		HuffmanTree<CharInfo> ht;
 		ht.CreateHuffmanTree(_infos, 256, CharInfo());
@@ -70,17 +71,17 @@ public:
 		string CompressFilename = filename;
 		CompressFilename += ".Huffman";
 		FILE *fInCompress;
-		fInCompress = fopen(CompressFilename.c_str(), "w");
+		fInCompress = fopen(CompressFilename.c_str(), "wb");
 		assert(fInCompress);
-		fseek(fIn, 0, SEEK_SET);
-		ch = fgetc(fIn);
+		rewind(fIn);
+		fread(ch, 1, 1, fIn);
 		unsigned char InCh = 0;
 		int index = 0;
-		int count = 0;
-		while (ch != EOF)
+		long long count = 0;
+		while (!feof(fIn))//压缩的过程！！！！！！
 		{
-			string Code = _infos[(unsigned char)ch]._code;
-			for (int i = 0; i < Code.size(); ++i)
+			string &Code = _infos[(unsigned char)(*ch)]._code;
+			for (size_t i = 0; i < Code.size(); ++i)
 			{
 
 				InCh = InCh << 1;
@@ -91,34 +92,35 @@ public:
 				}
 				if (++index == 8)
 				{
-					fputc(InCh, fInCompress);
+					fwrite(&InCh, 1, 1, fInCompress);
 					index = 0;
 					InCh = 0;
 				}
 				count++;
 			}
-			ch = fgetc(fIn);
+			fread(ch, 1, 1, fIn);//读取下一个字符
 		}//当index!=0时证明没写完需要进行处理
 		if (index != 0)
 		{
 			InCh = InCh << (8 - index);
-			fputc(InCh, fInCompress);
+			fwrite(&InCh, 1, 1, fInCompress);
 		}
 		FILE *fconfig;
 		string ConfigFilename = filename;
 		ConfigFilename += ".config";
-		fconfig = fopen(ConfigFilename.c_str(), "w+");
+		fconfig = fopen(ConfigFilename.c_str(), "wb");
 		assert(fconfig);
-
-		fputc(count + '0', fconfig);
-
+		char *ccc = new char;
+		fwrite(&count, 8, 1, fconfig);
+		LongType Count = 0;
 		for (int i = 0; i < 256; ++i)
 		{
 			if (_infos[i] != CharInfo())
 			{
-				fputc(_infos[i]._ch, fconfig);
-				fputc(_infos[i]._count + '0', fconfig);
-				fputc('\n', fconfig);
+				fwrite(&_infos[i]._ch, 1, 1, fconfig);
+				Count = _infos[i]._count;
+				fwrite(&Count, 8, 1, fconfig);//必须使用longlong进行接受，不然不够啊
+											  /*fputc('\n', fconfig);*/
 			}
 		}
 		fclose(fIn);
@@ -129,49 +131,54 @@ public:
 	void UnCompress(const char *huffmanfilename, const char *configfilename)
 	{
 		FILE *configfile;
-		configfile = fopen(configfilename, "r");
+		configfile = fopen(configfilename, "rb");
 		assert(configfile);
-		int count = fgetc(configfile) - '0';
-		char ch = fgetc(configfile);
-		while (ch != EOF)
+		char *ccc = new char;
+		LongType count = 0;//总共计数
+		LongType Count = 0;//单个字符计数
+		fread(&count, 8, 1, configfile);
+		char *ch = new char;
+		fread(ch, 1, 1, configfile);//读取配置文件，录入count信息
+		while (!feof(configfile))
 		{
-			unsigned char index = (unsigned char)ch;
-			ch = fgetc(configfile);
-			_infos[index]._count = ch - '0';
-			ch = fgetc(configfile);
-			ch = fgetc(configfile);
+			unsigned char index = (unsigned char)(*ch);//获得目录
+			fread(&Count, 8, 1, configfile);//读取计数信息
+			_infos[index]._count = Count;
+			fread(ch, 1, 1, configfile);//读取下一个字符信息
+										/*ch = fgetc(configfile);*/
 		}
 		HuffmanTree<CharInfo> ht;
 		ht.CreateHuffmanTree(_infos, 256, CharInfo());
 		string tmp;
 		GetHuffmanCode(ht.ReturnRootNode(), tmp);
 		FILE *huffmanfile;
-		huffmanfile = fopen(huffmanfilename, "r");
+		huffmanfile = fopen(huffmanfilename, "rb");
 		assert(huffmanfile);
 		FILE *fOut;
-		fOut = fopen("outputfile.txt", "w");
+		fOut = fopen("outputfile.jpg", "wb");
 		assert(fOut);
 		//跟1与，向右移
 
-		ch = fgetc(huffmanfile);
+		/*char *och = new char;*/
+		fread(ch, 1, 1, huffmanfile);
 		HuffmanNode<CharInfo> *root = ht.ReturnRootNode();
 		if (root->_left == NULL && root->_right == NULL)
 		{
 			//只有一个节点的情况
-			fputc(root->_value._ch, fOut);
+			fwrite(ch, 1, 1, fOut);
 		}
 		int index = 0;
 
-		int i = 0;//进行计数
+		LongType i = 0;//进行计数
 
-		while (ch != EOF && i < count)
+		while (!feof(huffmanfile) && i < count)//解压缩！！！！！！！！！！！！！！！！！
 		{
-			if (((unsigned char)ch & (unsigned char)128) == 0)
+			if (((unsigned char)(*ch) & (unsigned char)128) == 0)
 			{
 				root = root->_left;
 				if (root->_left == NULL && root->_right == NULL)
 				{
-					fputc(root->_value._ch, fOut);
+					fwrite(&root->_value._ch, 1, 1, fOut);
 					root = ht.ReturnRootNode();
 				}
 			}
@@ -180,15 +187,15 @@ public:
 				root = root->_right;
 				if (root->_left == NULL && root->_right == NULL)
 				{
-					fputc(root->_value._ch, fOut);
+					fwrite(&root->_value._ch, 1, 1, fOut);
 					root = ht.ReturnRootNode();
 				}
 			}
 			i++;
-			ch = ch << 1;
+			*ch = *ch << 1;
 			if (++index == 8)
 			{
-				ch = fgetc(huffmanfile);
+				fread(ch, 1, 1, huffmanfile);
 				index = 0;
 			}
 		}
@@ -214,11 +221,13 @@ protected:
 	CharInfo _infos[256];
 };
 
-
+FileCompress f;
+FileCompress f1;
 
 void TestFileCompress()
 {
-	FileCompress f;
-	f.Compress("test");
-	f.UnCompress("test.Huffman", "test.config");
+
+	f.Compress("ttt");
+
+	f1.UnCompress("ttt.Huffman", "ttt.config");
 }
