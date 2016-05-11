@@ -54,20 +54,37 @@ public:
 public:
 	bool BlockCompress(const char *pathname)
 	{
-		char tmp[20] = "*.txt";
+		char tmp[20] = "*.*";
 		char Getfilename[20];
 		char filename[50];
 		sprintf(Getfilename, "%s%s", pathname, tmp);
-		//_mkdir("G:/我的坚果云/项目文件/文件夹压缩/文件夹压缩/huffman");
+		
+		_mkdir("G:/我的坚果云/项目文件/文件夹压缩/文件夹压缩/huffman");
+		string huffmanpath;
+		huffmanpath = pathname;
+		huffmanpath += "../huffman/";
 		WIN32_FIND_DATAA p;
 		HANDLE h = FindFirstFileA(Getfilename,&p);
-		cout << p.cFileName << endl;
-		sprintf(filename, "%s%s", pathname, p.cFileName);
-		Compress(filename);
+		//cout << p.cFileName << endl;
+		if (string(p.cFileName) == ".")
+		{
+			FindNextFileA(h, &p);
+		}
+		if (string(p.cFileName) == "..")
+		{
+			FindNextFileA(h, &p);
+		}
+		vector<string> fileblock;
+		fileblock.push_back(p.cFileName);
+		//Compress(filename);
 		while (FindNextFileA(h, &p))
 		{
-			sprintf(filename, "%s%s", pathname, p.cFileName);
-			Compress(filename);
+			fileblock.push_back(p.cFileName);
+			//Compress(filename);
+		}
+		for (int i = 0; i < fileblock.size(); ++i)
+		{
+			Compress(pathname,fileblock[i].c_str(),huffmanpath.c_str());
 		}
 		return true;
 	}
@@ -81,7 +98,7 @@ public:
 		sprintf(Getfilename, "%s%s", pathname, tmp);
 		WIN32_FIND_DATAA p;
 		HANDLE h = FindFirstFileA(Getfilename, &p);
-		cout << p.cFileName << endl;
+		//cout << p.cFileName << endl;
 		sprintf(filename, "%s%s", pathname, p.cFileName);
 		sprintf(configfilename, "%s%s%s", pathname, p.cFileName, ".config");
 		UnCompress(filename, configfilename);
@@ -93,11 +110,14 @@ public:
 		}
 		return true;
 	}
-	bool Compress(const char *filename)
+	bool Compress(const char *pathname,const char *filename,  const char *huffmanpath)
 	{
 		assert(filename);
 		FILE *fIn;
-		string path = filename;
+
+		string path;
+		path += pathname;
+		path += filename;
 		fIn = fopen(path.c_str(), "rb");
 		assert(fIn);
 		char *ch = new char;
@@ -111,7 +131,8 @@ public:
 		ht.CreateHuffmanTree(_infos, 256, CharInfo());
 		string tmp;
 		GetHuffmanCode(ht.ReturnRootNode(), tmp);
-		string CompressFilename = filename;
+		string CompressFilename = huffmanpath;
+		CompressFilename += filename;
 		CompressFilename += ".Huffman";
 		FILE *fInCompress;
 		fInCompress = fopen(CompressFilename.c_str(), "wb");
@@ -149,7 +170,8 @@ public:
 			fwrite(&InCh, 1, 1, fInCompress);
 		}
 		FILE *fconfig;
-		string ConfigFilename = CompressFilename;
+		string ConfigFilename = huffmanpath;
+		ConfigFilename += filename;
 		ConfigFilename += ".config";
 		fconfig = fopen(ConfigFilename.c_str(), "wb");
 		assert(fconfig);
@@ -282,6 +304,7 @@ void TestBlockCompress()
 {
 	FileCompress f;
 	char *pathname = "test/";
+	char *huffmanpathname = "huffman/";
 	f.BlockCompress(pathname);
 	f.BlockUncompress(pathname);
 }

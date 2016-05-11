@@ -1,20 +1,19 @@
-﻿生成启动时间为 2016/4/13 20:34:33。
+﻿生成启动时间为 2016/4/18 19:28:20。
      1>项目“G:\我的坚果云\项目文件\FileCompressUnCompress\FileCompressUnCompress\FileCompressUnCompress.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          E:\工具\VS2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt "源.cpp"
          源.cpp
-     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(83): warning C4018: “<”: 有符号/无符号不匹配
-     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(58): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(62): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
-     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(73): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(82): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
-     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(110): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(122): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
-     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(132): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(147): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
-     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(149): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(168): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
-     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(152): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(171): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
          c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
      1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\huffman.h(49): warning C4018: “<”: 有符号/无符号不匹配
          g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\huffman.h(47): note: 编译类 模板 成员函数“void HuffmanTree<CharInfo>::CreateHuffmanTree(T *,size_t,T &)”时
@@ -22,12 +21,12 @@
                  [
                      T=CharInfo
                  ]
-         g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(67): note: 参见对正在编译的函数 模板 实例化“void HuffmanTree<CharInfo>::CreateHuffmanTree(T *,size_t,T &)”的引用
+         g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(73): note: 参见对正在编译的函数 模板 实例化“void HuffmanTree<CharInfo>::CreateHuffmanTree(T *,size_t,T &)”的引用
                  with
                  [
                      T=CharInfo
                  ]
-         g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(66): note: 参见对正在编译的类 模板 实例化“HuffmanTree<CharInfo>”的引用
+         g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\filecompress.h(71): note: 参见对正在编译的类 模板 实例化“HuffmanTree<CharInfo>”的引用
      1>g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\huffman.h(83): warning C4018: “<”: 有符号/无符号不匹配
          g:\我的坚果云\项目文件\filecompressuncompress\filecompressuncompress\huffman.h(81): note: 编译类 模板 成员函数“void HuffmanTree<CharInfo>::AdjustDown(std::vector<HuffmanNode<CharInfo> *,std::allocator<_Ty>> &,int,size_t)”时
                  with
@@ -47,4 +46,4 @@
 
 已成功生成。
 
-已用时间 00:00:06.20
+已用时间 00:00:01.64

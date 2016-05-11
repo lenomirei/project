@@ -2,7 +2,9 @@
 #include<iostream>
 #include<string>
 #include<cassert>
+#include<time.h>
 #include"Huffman.h"
+#define _DEBUG_
 using namespace std;
 
 //如何输入一个文件夹的名称遍历这下面所有的文件
@@ -54,7 +56,10 @@ public:
 		assert(filename);
 		FILE *fIn;
 		string path = filename;
-		path += ".jpg";
+		path += ".txt";
+#ifdef _DEBUG_
+		clock_t t1 = clock();
+#endif
 		fIn = fopen(path.c_str(), "rb");
 		assert(fIn);
 		char *ch = new char;
@@ -65,12 +70,20 @@ public:
 			fread(ch, 1, 1, fIn);
 		}
 		HuffmanTree<CharInfo> ht;
+		
 		ht.CreateHuffmanTree(_infos, 256, CharInfo());
+#ifdef _DEBUG_
+		clock_t t2 = clock();
+		cout << "建立哈夫曼树的时间" << (t2 - t1) / CLOCKS_PER_SEC << endl;
+#endif
 		string tmp;
 		GetHuffmanCode(ht.ReturnRootNode(), tmp);
 		string CompressFilename = filename;
 		CompressFilename += ".Huffman";
 		FILE *fInCompress;
+#ifdef _DEBUG_
+		clock_t t3 = clock();
+#endif
 		fInCompress = fopen(CompressFilename.c_str(), "wb");
 		assert(fInCompress);
 		rewind(fIn);
@@ -105,6 +118,11 @@ public:
 			InCh = InCh << (8 - index);
 			fwrite(&InCh, 1, 1, fInCompress);
 		}
+#ifdef _DEBUG_
+		clock_t t4 = clock();
+		cout << "精确压缩的时间" << (t4 - t3) / CLOCKS_PER_SEC << endl;
+		clock_t t5 = clock();
+#endif
 		FILE *fconfig;
 		string ConfigFilename = filename;
 		ConfigFilename += ".config";
@@ -123,6 +141,10 @@ public:
 											  /*fputc('\n', fconfig);*/
 			}
 		}
+#ifdef _DEBUG_
+		clock_t t6 = clock();
+		cout << "书写配置文件花费的时间" << (t6 - t5) / CLOCKS_PER_SEC << endl;
+#endif
 		fclose(fIn);
 		fclose(fInCompress);
 		fclose(fconfig);
@@ -155,7 +177,7 @@ public:
 		huffmanfile = fopen(huffmanfilename, "rb");
 		assert(huffmanfile);
 		FILE *fOut;
-		fOut = fopen("outputfile.jpg", "wb");
+		fOut = fopen("outputfile.txt", "wb");
 		assert(fOut);
 		//跟1与，向右移
 
@@ -221,13 +243,22 @@ protected:
 	CharInfo _infos[256];
 };
 
-FileCompress f;
-FileCompress f1;
 
 void TestFileCompress()
 {
-
+	FileCompress f;
+	FileCompress f1;
+#ifdef _DEBUG_
+	clock_t start = clock();
+#endif
 	f.Compress("ttt");
-
+#ifdef _DEBUG_
+	clock_t mid = clock();
+#endif
 	f1.UnCompress("ttt.Huffman", "ttt.config");
+#ifdef _DEBUG_
+	clock_t finsh = clock();
+	cout << "压缩时间" << ((double)(mid - start)) / CLOCKS_PER_SEC << endl;
+	cout << "解压缩时间" << ((double)(finsh - mid)) / CLOCKS_PER_SEC << endl;
+#endif
 }
