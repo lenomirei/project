@@ -17,8 +17,8 @@ void MainMenu()
 	printf("1.显示当前文件夹的所有文件\n");
 	printf("2.返回上一级\n");
 	printf("3.选择文件夹\n");
-	printf("4.退出\n");
-	//printf("5.退出\n");
+	printf("4.输入要下载的文件\n");
+	printf("5.退出\n");
 }
 
 void Showfilelist(vector<string>& filelist)
