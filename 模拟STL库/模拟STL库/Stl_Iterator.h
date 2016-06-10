@@ -5,7 +5,7 @@ struct InputIterator_tag {};
 struct OutputIterator_tag {};
 struct ForwardIterator_tag : public InputIterator_tag {};
 struct BidirectionalIterator_tag : public ForwardIterator_tag {};
-struct RandomAccessIterator_tag : public bidirectional_iterator_tag {};
+struct RandomAccessIterator_tag : public BidirectionalIterator_tag {};
 
 template <class T, class Distance> struct InputIterator {
 	typedef InputIterator_tag IteratorCategory;
@@ -93,4 +93,18 @@ template<class InputIterator>
 int _Distance(InputIterator first, InputIterator last, RandomAccessIterator_tag)
 {
 	return last - first;
+}
+
+
+
+template <class Iterator>
+inline typename IteratorTraits<Iterator>::DifferenceType*
+DifferenceType(const Iterator&) {
+	return static_cast<typename IteratorTraits<Iterator>::DifferenceType*>(0);
+}
+
+template <class Iterator>
+inline typename IteratorTraits<Iterator>::DifferenceType*
+ValueType(const Iterator&) {
+	return static_cast<typename IteratorTraits<Iterator>::ValueType*>(0);
 }
