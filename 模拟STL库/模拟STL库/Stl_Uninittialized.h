@@ -29,9 +29,10 @@ __UninitializedCopyAux(InputIterator first, InputIterator last,
 
 template <class InputIterator, class ForwardIterator, class T>
 inline ForwardIterator __UninitializedCopy(InputIterator first, InputIterator last,
-	ForwardIterator result, T*) {
-	typedef typename __TypeTraits<T>::is_POD_type is_POD;
-	return __UninitializedCopyAux(first, last, result, is_POD());
+	ForwardIterator result, T*)
+{
+	typedef typename __TypeTraits<T>::IsPODType IsPOD;
+	return __UninitializedCopyAux(first, last, result, IsPOD());
 }
 
 

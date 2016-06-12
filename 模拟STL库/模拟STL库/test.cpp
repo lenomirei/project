@@ -2,7 +2,7 @@
 
 
 using namespace std;
-
+#include"Stl_Uninittialized.h"
 #include"Stl_Vector.h"
 #include"Stl_List.h"
 #include"Stl_Alloc.h"

@@ -92,18 +92,29 @@ struct _List_Iterator
 
 
 
-template<class T>
+template<class T, class Alloc=Alloc>
 class List
 {
 public:
 	typedef _List_Node<T>* LinkType;
 	typedef _List_Iterator<T, T&, T*> Iterator;
+	typedef SimpleAlloc<_List_Node, Alloc> ListNodeAllocator;
 	List()
 	{
 		_node = new _List_Node<T>();
 		_node->_next = _node;
 		_node->_prev = _node;
 	}
+	~List()
+	{
+		Destory(Begin(), End());
+		Iterator it = Begin();
+		while (it != End())
+		{
+			ListNodeAllocator::Deallocate(it._node);
+		}
+	}
+
 
 	Iterator Begin()
 	{
@@ -121,7 +132,9 @@ public:
 	Iterator Insert(Iterator pos,const T& x)
 	{
 		LinkType prev = pos._node->_prev;
-		LinkType tmp = new _List_Node<T>(x);
+		LinkType tmp = ListNodeAllocator::Allocate();
+		Construct(tmp, x);
+		//LinkType tmp = new _List_Node<T>(x);
 		prev->_next = tmp;
 		pos._node->_prev = tmp;
 		tmp->_next = pos._node;

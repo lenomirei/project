@@ -61,13 +61,37 @@ struct Iterator {
 
 
 template <class Iterator>
-struct IteratorTraits {
+struct IteratorTraits 
+{
 	typedef typename Iterator::IteratorCategory IteratorCategory;
 	typedef typename Iterator::ValueType        ValueType;
 	typedef typename Iterator::DifferenceType   DifferenceType;
 	typedef typename Iterator::Pointer           Pointer;
 	typedef typename Iterator::Reference         Reference;
 };//类型萃取机
+
+
+
+
+
+template <class T>
+struct IteratorTraits<T*>
+{
+	typedef RandomAccessIterator_tag IteratorCategory;
+	typedef T                          ValueType;
+	typedef ptrdiff_t                  DifferenceType;
+	typedef T*                         Pointer;
+	typedef T&                         Reference;
+};
+
+
+
+
+
+
+
+
+
 
 template<class InputIterator>
 int Distance(InputIterator first, InputIterator last)
@@ -97,14 +121,31 @@ int _Distance(InputIterator first, InputIterator last, RandomAccessIterator_tag)
 
 
 
-template <class Iterator>
-inline typename IteratorTraits<Iterator>::DifferenceType*
-DifferenceType(const Iterator&) {
-	return static_cast<typename IteratorTraits<Iterator>::DifferenceType*>(0);
+//template <class Iterator>
+//inline typename IteratorTraits<Iterator>::DifferenceType*
+//DifferenceType(const Iterator&) {
+//	return static_cast<typename IteratorTraits<Iterator>::DifferenceType*>(0);
+//}
+
+template <class T, class Distance>
+inline T* ValueType(const InputIterator<T, Distance>&) {
+	return (T*)(0);
 }
 
-template <class Iterator>
-inline typename IteratorTraits<Iterator>::DifferenceType*
-ValueType(const Iterator&) {
-	return static_cast<typename IteratorTraits<Iterator>::ValueType*>(0);
+template <class T, class Distance>
+inline T* ValueType(const ForwardIterator<T, Distance>&) {
+	return (T*)(0);
 }
+
+template <class T, class Distance>
+inline T* ValueType(const BidirectionalIterator<T, Distance>&) {
+	return (T*)(0);
+}
+
+template <class T, class Distance>
+inline T* ValueType(const RandomAccessIterator<T, Distance>&) {
+	return (T*)(0);
+}
+
+template <class T>
+inline T* ValueType(const T*) { return (T*)(0); }
