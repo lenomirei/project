@@ -1,4 +1,4 @@
-//¿Í»§¶Ë
+//å®¢æˆ·ç«¯
 
 #define	_CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
@@ -28,8 +28,8 @@ bool Judge(char *buf, size_t size)
 int main()
 {
 	WORD wVersionRequested;  //typedef unsigned short WORD
-	WSADATA wsaData;   //ÓÃ°¢Àï´æ´¢ÏµÍ³´«»ØµÄ¹ØÓÚWinSocketµÄ×ÊÁÏ
-	int err;  //ÓÃÀ´ÅĞ¶ÏÆô¶¯º¯ÊıÊÇ·ñÕı³£
+
+	int err;  //ç”¨æ¥åˆ¤æ–­å¯åŠ¨å‡½æ•°æ˜¯å¦æ­£å¸¸
 
 	wVersionRequested = MAKEWORD(1, 1);
 
@@ -46,57 +46,57 @@ int main()
 		return -1;
 	}
 
-	SOCKET socketClient = socket(AF_INET, SOCK_STREAM, 0);   //AF_INET tcpipµÄĞ­Òé
-															 //³õÊ¼»¯Á¬½Ó
-	SOCKADDR_IN addrSrv;  //·şÎñÆ÷µÄµØÖ·
+	SOCKET socketClient = socket(AF_INET, SOCK_STREAM, 0);   //AF_INET tcpipçš„åè®®
+															 //åˆå§‹åŒ–è¿æ¥
+	SOCKADDR_IN addrSrv;  //æœåŠ¡å™¨çš„åœ°å€
 	addrSrv.sin_addr.S_un.S_addr = inet_addr("192.168.74.129");
-	addrSrv.sin_family = AF_INET;  //Ê¹ÓÃµÄÊÇTCP/IP 
-	addrSrv.sin_port = htons(8001);  //×ªÎªÍøÂçĞò  ÉèÖÃ¶Ë¿ÚºÅ
+	addrSrv.sin_family = AF_INET;  //ä½¿ç”¨çš„æ˜¯TCP/IP 
+	addrSrv.sin_port = htons(8001);  //è½¬ä¸ºç½‘ç»œåº  è®¾ç½®ç«¯å£å·
 
-								   //Á¬½Óµ½·şÎñÆ÷ Ê¹ÓÃSOCKET¶ÔÏóÁ¬½Ó·şÎñÆ÷,ËÍÈë·şÎñÆ÷µÄµØÖ·ĞÅÏ¢  Ç¿×ª
-	if (connect(socketClient, (SOCKADDR*)&addrSrv, sizeof(SOCKADDR)) < 0)  //Ğ­Òé²ÎÊı  Ì×½Ó×Ö²ÎÊı 
+								   //è¿æ¥åˆ°æœåŠ¡å™¨ ä½¿ç”¨SOCKETå¯¹è±¡è¿æ¥æœåŠ¡å™¨,é€å…¥æœåŠ¡å™¨çš„åœ°å€ä¿¡æ¯  å¼ºè½¬
+	if (connect(socketClient, (SOCKADDR*)&addrSrv, sizeof(SOCKADDR)) < 0)  //åè®®å‚æ•°  å¥—æ¥å­—å‚æ•° 
 	{
 		printf("connction faild!");
 		closesocket(socketClient);
 		return 0;
 	}
 
-	//Èç¹ûÁ¬½Óµ½ÁË  ÄÇ¾ÍÏÈ´«³öÃüÁî×Ö·û´®ÔÙÈ¥½ÓÊÕÃüÁîÖ´ĞĞ½á¹û¼¯
+	//å¦‚æœè¿æ¥åˆ°äº†  é‚£å°±å…ˆä¼ å‡ºå‘½ä»¤å­—ç¬¦ä¸²å†å»æ¥æ”¶å‘½ä»¤æ‰§è¡Œç»“æœé›†
 	char recvBuf[512] = { 0 };
 	char sendBuf[512] = { 0 };
 	
-//	FILE* fp = fopen("resultfile.txt", "w");//ÕæµÄÓĞ±ØÒªÔÙĞ´ÈëÒ»¸öÎÄ¼şÀïÃæÃ´£¿
+//	FILE* fp = fopen("resultfile.txt", "w");//çœŸçš„æœ‰å¿…è¦å†å†™å…¥ä¸€ä¸ªæ–‡ä»¶é‡Œé¢ä¹ˆï¼Ÿ
 //	if (!fp)
 //		return 0;
 
 
-	//Ğ´ÈëÎÄ¼ş
+	//å†™å…¥æ–‡ä»¶
 	while (1)
 	{
-		//ÊäÈë²¢´«ÊäÃüÁî
+		//è¾“å…¥å¹¶ä¼ è¾“å‘½ä»¤
 		cin >> sendBuf;
 		send(socketClient, sendBuf, 512, 0);
-		//cout << "ÒÑ¾­´«ÊäÁËÃüÁî£¬µÈ´ı½ÓÊÜ½á¹û¼¯" << endl;
+		//cout << "å·²ç»ä¼ è¾“äº†å‘½ä»¤ï¼Œç­‰å¾…æ¥å—ç»“æœé›†" << endl;
 		memset(sendBuf, 0, 512);
 
 		while (1)
 		{
-			//½ÓÊÕ½á¹û¼¯
+			//æ¥æ”¶ç»“æœé›†
 			int len = recv(socketClient, recvBuf, 512, 0);
-		//	cout << "½ÓÊÜ½á¹û¼¯" << endl;
+		//	cout << "æ¥å—ç»“æœé›†" << endl;
 			//fwrite(recvBuf, 1, len, fp);
 			cout << recvBuf << endl;
 		//	cout << "len:" << len << endl;
-		//	cout << "´òÓ¡½á¹û¼¯" << endl;
+		//	cout << "æ‰“å°ç»“æœé›†" << endl;
 			//printf("%s\n", recvBuf);
 			
 			if (Judge(recvBuf,512))
 			{
-		//		cout << "ÎÒÒªÍË³ö½ÓÊÜ½á¹û¼¯µÄÑ­»·ÁË" << endl;
+		//		cout << "æˆ‘è¦é€€å‡ºæ¥å—ç»“æœé›†çš„å¾ªç¯äº†" << endl;
 				break;
 			}
 			memset(recvBuf, 0, 512);
-	//		cout << "Çå¿Õ»º³åÇø" << endl;
+	//		cout << "æ¸…ç©ºç¼“å†²åŒº" << endl;
 		}
 
 	}
@@ -112,13 +112,13 @@ int main()
 	//int i = 0;
 	//while (i<100)
 	//{
-	//	//recv(socketClient, recvBuf, 50, 0);  //socket¶ÔÏóÒÑ¾­½ÓÊÕµ½Êı¾İ£¬ÏÖÔÚ¿ªÊ¼´Îon¸ö»º´æÇøÖĞÈ¡Êı¾İ
+	//	//recv(socketClient, recvBuf, 50, 0);  //socketå¯¹è±¡å·²ç»æ¥æ”¶åˆ°æ•°æ®ï¼Œç°åœ¨å¼€å§‹æ¬¡onä¸ªç¼“å­˜åŒºä¸­å–æ•°æ®
 	//    //printf("%s\n", recvBuf);
 	//	send(socketClient, "123456789" , 50, 0);
 	//	//Sleep(100);
 	//}
 
-	closesocket(socketClient);  //¹Ø±ÕsocketÁ¬½Ó
+	closesocket(socketClient);  //å…³é—­socketè¿æ¥
 
 	WSACleanup();
 
